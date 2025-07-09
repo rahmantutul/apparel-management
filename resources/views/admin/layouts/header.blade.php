@@ -437,9 +437,14 @@
 					<li class="sep"></li>
 		
 					<li>
-						<a href="extra-login.html">
+						<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 							Log Out <i class="entypo-logout right"></i>
 						</a>
+
+						<!-- Hidden logout form -->
+						<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
 					</li>
 				</ul>
 		

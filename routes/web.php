@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
-    return view('admin.index');
+    return view('auth.login');
 });
 
+Auth::routes(['register' => false]);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
