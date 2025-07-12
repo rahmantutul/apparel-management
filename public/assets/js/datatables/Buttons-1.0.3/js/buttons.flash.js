@@ -1,6 +1,6 @@
 /*!
  * Flash export buttons for Buttons and DataTables.
- * 2015 SpryMedia Ltd - datatables.net/license
+ * 2025 SpryMedia Ltd - datatables.net/license
  *
  * ZeroClipbaord - MIT license
  * Copyright (c) 2012 Joseph Huckaby

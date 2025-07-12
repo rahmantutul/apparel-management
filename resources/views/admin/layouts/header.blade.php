@@ -9,8 +9,8 @@
 					<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right -->
 		
 						<a href="" class="dropdown-toggle" data-toggle="dropdown">
-							<img src="{{ asset('assets/images/thumb-1@2x.png') }}" alt="" class="img-circle" width="44" />
-							John Henderson
+							<img src="{{ asset('assets/images/200.png') }}" alt="" class="img-circle" width="44" />
+							{{ Auth::user()->name }} 
 						</a>
 		
 						<ul class="dropdown-menu">
@@ -20,7 +20,7 @@
 		
 							<!-- Profile sub-links -->
 							<li>
-								<a href="extra-timeline.html">
+								<a href="{{ route('profile.edit') }}">
 									<i class="entypo-user"></i>
 									Edit Profile
 								</a>

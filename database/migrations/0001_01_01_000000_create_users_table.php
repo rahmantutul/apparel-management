@@ -19,7 +19,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('phone')->nullable();  // Added phone field (nullable)
-            $table->text('address')->nullable();  // Added address field (nullable)
             $table->rememberToken();
             $table->timestamps();
         });

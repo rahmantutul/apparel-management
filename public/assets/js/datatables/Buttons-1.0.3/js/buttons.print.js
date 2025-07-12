@@ -1,6 +1,6 @@
 /*!
  * Print button for Buttons and DataTables.
- * 2015 SpryMedia Ltd - datatables.net/license
+ * 2025 SpryMedia Ltd - datatables.net/license
  */
 
 (function($, DataTable) {

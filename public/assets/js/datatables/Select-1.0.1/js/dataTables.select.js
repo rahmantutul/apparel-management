@@ -1,5 +1,5 @@
 /*! Select for DataTables 1.0.1
- * 2015 SpryMedia Ltd - datatables.net/license/mit
+ * 2025 SpryMedia Ltd - datatables.net/license/mit
  */
 
 /**
@@ -10,7 +10,7 @@
  * @file        dataTables.select.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     datatables.net/forums
- * @copyright   Copyright 2015 SpryMedia Ltd.
+ * @copyright   Copyright 2025 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit

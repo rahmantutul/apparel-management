@@ -1,5 +1,5 @@
 /*! FixedHeader 3.0.0
- * ©2009-2015 SpryMedia Ltd - datatables.net/license
+ * ©2009-2025 SpryMedia Ltd - datatables.net/license
  */
 
 /**
@@ -10,7 +10,7 @@
  * @file        dataTables.fixedHeader.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
- * @copyright   Copyright 2009-2015 SpryMedia Ltd.
+ * @copyright   Copyright 2009-2025 SpryMedia Ltd.
  *
  * This source file is free software, available under the following license:
  *   MIT license - http://datatables.net/license/mit
