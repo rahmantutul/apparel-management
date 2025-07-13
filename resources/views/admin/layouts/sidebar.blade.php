@@ -26,12 +26,12 @@
 						<span class="title">Dashboard</span>
 					</a>
 				</li>
-				<li class="active opened has-sub">
+				<li class="{{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'active opened has-sub' : 'has-sub' }}">
 					<a href="index.html">
 						<i class="entypo-gauge"></i>
 						<span class="title">System Settings</span>
 					</a>
-					<ul class="visible">
+					<ul class="{{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'visible' : '' }}">
 						<li class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
 							<a href="{{ route('users.index') }}">
 								<span class="title">Users</span>
@@ -42,68 +42,22 @@
 								<span class="title">Roles</span>
 							</a>
 						</li>
-						<li>
-							<a href="dashboard-3.html">
-								<span class="title">Dashboard 3</span>
+					</ul>
+				</li>
+				<li class="active opened has-sub">
+					<a href="#">
+						<i class="entypo-gauge"></i>
+						<span class="title">Employee Settings</span>
+					</a>
+					<ul class="visible">
+						<li class="{{ request()->routeIs('departments.*') ? 'active' : '' }}">
+							<a href="{{ route('departments.index') }}">
+								<span class="title">Department</span>
 							</a>
 						</li>
-						<li class="has-sub">
-							<a href="skin-black.html">
-								<span class="title">Skins</span>
-							</a>
-							<ul>
-								<li>
-									<a href="skin-black.html">
-										<span class="title">Black Skin</span>
-									</a>
-								</li>
-								<li>
-									<a href="skin-white.html">
-										<span class="title">White Skin</span>
-									</a>
-								</li>
-								<li>
-									<a href="skin-purple.html">
-										<span class="title">Purple Skin</span>
-									</a>
-								</li>
-								<li>
-									<a href="skin-cafe.html">
-										<span class="title">Cafe Skin</span>
-									</a>
-								</li>
-								<li>
-									<a href="skin-red.html">
-										<span class="title">Red Skin</span>
-									</a>
-								</li>
-								<li>
-									<a href="skin-green.html">
-										<span class="title">Green Skin</span>
-									</a>
-								</li>
-								<li>
-									<a href="skin-yellow.html">
-										<span class="title">Yellow Skin</span>
-									</a>
-								</li>
-								<li>
-									<a href="skin-blue.html">
-										<span class="title">Blue Skin</span>
-									</a>
-								</li>
-								<li>
-									<a href="skin-facebook.html">
-										<span class="title">Facebook Skin</span>
-										<span class="badge badge-secondary badge-roundless">New</span>
-									</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="highlights.html">
-								<span class="title">What's New</span>
-								<span class="badge badge-success badge-roundless">v2.0</span>
+						<li class="{{ request()->routeIs('roles.*') ? 'active' : '' }}">
+							<a href="{{ route('roles.index') }}">
+								<span class="title">Designation</span>
 							</a>
 						</li>
 					</ul>

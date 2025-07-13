@@ -11,7 +11,7 @@
             <div class="col-md-8" style="background: rgb(235, 243, 247); padding: 20px;">
                 <form id="editUserForm">
                     @csrf
-                    @method('POST')
+                    @method('put')
                     <input type="hidden" name="id" id="edit-user-id">
 
                     <div class="row">
@@ -20,6 +20,7 @@
                                 <label>Name <span class="text-danger">*</span></label>
                                 <input type="text" name="name" id="edit-name" class="form-control" value="{{ $user->name }}" required>
                                 <input type="hidden" name="id" id="edit-user-id" class="form-control" value="{{ $user->id }}" required>
+                                <input type="hidden" name="role" class="form-control" value="{{ $roleId }}" required>
                             </div>
                         </div>
 
@@ -66,40 +67,10 @@
   
 @endsection
 @push('scripts')
-	<script type="text/javascript">
-		function showAjaxModal()
-		{
-			jQuery('#add-user-modal').modal('show', {backdrop: 'static'});
-			
-			jQuery.ajax({
-				url: "data/ajax-content.txt",
-				success: function(response)
-				{
-					jQuery('#add-user-modal .modal-body').html(response);
-				}
-			});
-		}
-	</script>
-    <script type="text/javascript">
-        jQuery( document ).ready( function( $ ) {
-            var $table1 = jQuery( '#users_table' );
-            
-            $table1.DataTable( {
-                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-                "bStateSave": true
-            });
-            
-            $table1.closest( '.dataTables_wrapper' ).find( 'select' ).select2( {
-                minimumResultsForSearch: -1
-            });
-        } );
-    </script>
     <script>
         $('#editUserForm').submit(function(e) {
             e.preventDefault();
-            
-            // Show loading indicator
-            Swal.fire({
+             Swal.fire({
                 title: 'Updating Profile...',
                 allowOutsideClick: false,
                 didOpen: () => {
@@ -109,10 +80,9 @@
 
             let formData = $(this).serialize();
             let userId = $('#edit-user-id').val();
-            console.log(userId);
             $.ajax({
-                url: "{{ route('profile.update', ['id' => ':id']) }}".replace(':id', userId),
-                type: 'POST',
+                url: "{{ route('profile.update', ['id' => $user->id]) }}",
+                type: 'put',
                 data: formData,
                 success: function(response) {
                     Swal.fire({
@@ -123,13 +93,12 @@
                         showConfirmButton: false
                     }).then(() => {
                         $('#edit-user-modal').modal('hide');
-                        location.reload(); // Refresh to show changes
+                        location.reload();
                     });
                 },
                 error: function(xhr) {
                     let errorMessage = 'Update failed. Please try again.';
                     
-                    // Handle validation errors
                     if (xhr.status === 422 && xhr.responseJSON.errors) {
                         errorMessage = Object.values(xhr.responseJSON.errors).join('<br>');
                     } else if (xhr.responseJSON && xhr.responseJSON.message) {

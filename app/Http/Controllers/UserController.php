@@ -91,10 +91,7 @@ class UserController extends Controller
         if ($request->filled('password')) {
             $data['password'] = bcrypt($request->password);
         }
-
         $user->update($data);
-
-        // Sync role (remove all current roles and add the new one)
         $role = Role::findById($request->role);
         $user->syncRoles($role);
 
@@ -108,6 +105,7 @@ class UserController extends Controller
 
     public function profile_edit(){
         $user = Auth::user();
-        return view('admin.edit_profile',compact('user'));
+        $roleId = $user->roles->first()->id;
+        return view('admin.edit_profile',compact('user','roleId'));
     }
 }

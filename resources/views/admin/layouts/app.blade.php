@@ -25,7 +25,7 @@
     @stack('Styles')
 
 </head>
-<body class="page-body  page-fade">
+<body class="page-body">
 
 	<div class="page-container">
 		
