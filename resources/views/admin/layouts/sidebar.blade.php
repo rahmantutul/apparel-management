@@ -55,9 +55,14 @@
 								<span class="title">Department</span>
 							</a>
 						</li>
-						<li class="{{ request()->routeIs('roles.*') ? 'active' : '' }}">
-							<a href="{{ route('roles.index') }}">
+						<li class="{{ request()->routeIs('designations.*') ? 'active' : '' }}">
+							<a href="{{ route('designations.index') }}">
 								<span class="title">Designation</span>
+							</a>
+						</li>
+						<li class="{{ request()->routeIs('employee-shifts.*') ? 'active' : '' }}">
+							<a href="{{ route('employee-shifts.index') }}">
+								<span class="title">Shift</span>
 							</a>
 						</li>
 					</ul>

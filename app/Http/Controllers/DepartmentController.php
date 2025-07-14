@@ -39,6 +39,9 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-        return response()->json(['message' => 'Department deleted successfully']);
+        return response()->json([
+            'success' => true,
+            'message' => 'Department deleted successfully'
+        ]);
     }
 }

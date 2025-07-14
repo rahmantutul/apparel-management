@@ -4,29 +4,29 @@
 @section('content')
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="page-header m-0">
-            Departments
+            Designations
             <a href="javascript:;" onclick="showAjaxModal();" class="btn btn-primary btn-icon icon-left">
-                <i class="entypo-plus"></i> Add Department
+                <i class="entypo-plus"></i> Add Designation
             </a>
         </h2>
     </div>
 
-    <table class="table table-bordered datatable table-responsive" id="departments_table">
+    <table class="table table-bordered datatable table-responsive" id="designations_table">
         <thead>
             <tr>
-                <th>Department Name</th>
+                <th>Designation Name</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($departments as $department)
+            @foreach($designations as $designation)
                 <tr>
-                    <td>{{ $department->name }}</td>
+                    <td>{{ $designation->name }}</td>
                     <td>
-                        <button type="button" class="btn btn-default btn-sm btn-icon icon-left edit-department-btn" data-id="{{ $department->id }}">
+                        <button type="button" class="btn btn-default btn-sm btn-icon icon-left edit-designation-btn" data-id="{{ $designation->id }}">
                             <i class="entypo-pencil"></i> Edit
                         </button>
-                        <a href="#" class="btn btn-danger btn-sm btn-icon icon-left deleteBtn" data-id="{{ $department->id }}">
+                        <a href="#" class="btn btn-danger btn-sm btn-icon icon-left deleteBtn" data-id="{{ $designation->id }}">
                             <i class="entypo-cancel"></i> Delete
                         </a>
                     </td>
@@ -35,33 +35,33 @@
         </tbody>
         <tfoot>
             <tr>
-                <th>Department Name</th>
+                <th>Designation Name</th>
                 <th>Actions</th>
             </tr>
         </tfoot>
     </table>
 
-    <!-- Department Modal -->
-    <div class="modal fade" id="department-modal">
+    <!-- Designation Modal -->
+    <div class="modal fade" id="designation-modal">
         <div class="modal-dialog">
-            <form id="departmentForm">
+            <form id="designationForm">
                 @csrf
-                <input type="hidden" id="department_id" name="id">
+                <input type="hidden" id="designation_id" name="id">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="modal-title">Add New Department</h4>
+                        <h4 class="modal-title" id="modal-title">Add New Designation</h4>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Department Name <span class="text-danger">*</span></label>
-                            <input type="text" name="name" id="department_name" class="form-control" required>
+                            <label>Designation Name <span class="text-danger">*</span></label>
+                            <input type="text" name="name" id="designation_name" class="form-control" required>
                         </div>
                     </div>
                     
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" id="save-department-btn">Save Department</button>
+                        <button type="submit" class="btn btn-primary" id="save-designation-btn">Save Designation</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     </div>
                 </div>
@@ -73,18 +73,18 @@
 @push('scripts')
     <script type="text/javascript">
         function showAjaxModal() {
-            $('#department_id').val('');
-            $('#department_name').val('');
-            $('#modal-title').text('Add New Department');
-            $('#department-modal').modal('show', {backdrop: 'static'});
+            $('#designation_id').val('');
+            $('#designation_name').val('');
+            $('#modal-title').text('Add New Designation');
+            $('#designation-modal').modal('show', {backdrop: 'static'});
         }
     </script>
     <script>
-        const deleteRoute = "{{ route('departments.destroy', ':id') }}";
+        const deleteRoute = "{{ route('designations.destroy', ':id') }}";
         $(document).on('click', '.deleteBtn', function (e) {
             e.preventDefault();
-            let deptId = $(this).data('id');
-            let url = deleteRoute.replace(':id', deptId);
+            let designationId = $(this).data('id');
+            let url = deleteRoute.replace(':id', designationId);
 
             Swal.fire({
                 title: 'Are you sure?',
@@ -105,7 +105,7 @@
                                 location.reload();
                                 toastr.success(response.message);
                             } else {
-                                toastr.error(response.message || 'Failed to delete department.');
+                                toastr.error(response.message || 'Failed to delete designation.');
                             }
                         },
                         error: function (xhr) {
@@ -118,7 +118,7 @@
     </script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
-            var $table = $('#departments_table');
+            var $table = $('#designations_table');
             
             $table.DataTable({
                 "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -133,32 +133,32 @@
 
     <script>
         $(document).ready(function() {
-            // Open modal for editing department
-            $(document).on('click', '.edit-department-btn', function() {
-                var departmentId = $(this).data('id');
+            // Open modal for editing designation
+            $(document).on('click', '.edit-designation-btn', function() {
+                var designationId = $(this).data('id');
                 
-                $.get('/departments/' + departmentId + '/edit', function(data) {
-                    $('#department_id').val(data.id);
-                    $('#department_name').val(data.name);
-                    $('#modal-title').text('Edit Department: ' + data.name);
-                    $('#department-modal').modal('show');
+                $.get('/designations/' + designationId + '/edit', function(data) {
+                    $('#designation_id').val(data.id);
+                    $('#designation_name').val(data.name);
+                    $('#modal-title').text('Edit Designation: ' + data.name);
+                    $('#designation-modal').modal('show');
                 }).fail(function(xhr) {
                     Swal.fire({
                         icon: 'error',
                         title: 'Error!',
-                        text: 'Failed to load department data: ' + xhr.responseJSON.message,
+                        text: 'Failed to load designation data: ' + xhr.responseJSON.message,
                         timer: 3000
                     });
                 });
             });
             
             // Handle form submission
-            $('#departmentForm').submit(function(e) {
+            $('#designationForm').submit(function(e) {
                 e.preventDefault();
                 
                 var formData = $(this).serialize();
-                var url = $('#department_id').val() ? '/departments/' + $('#department_id').val() : '/departments';
-                var method = $('#department_id').val() ? 'PUT' : 'POST';
+                var url = $('#designation_id').val() ? '/designations/' + $('#designation_id').val() : '/designations';
+                var method = $('#designation_id').val() ? 'PUT' : 'POST';
                 
                 Swal.fire({
                     title: 'Processing...',
@@ -173,7 +173,7 @@
                     type: method,
                     data: formData,
                     success: function(response) {
-                        $('#department-modal').modal('hide');
+                        $('#designation-modal').modal('hide');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success!',

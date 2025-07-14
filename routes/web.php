@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +33,15 @@ Route::middleware(['auth'])->group(function () {
 
     // Department
     Route::resource('departments', DepartmentController::class);
+
+    // Designation
+    Route::resource('designations', DesignationController::class);
+
+    // Shifts
+    Route::resource('employee-shifts', ShiftController::class);
+
+    // Employee
+    Route::resource('employees', ShiftController::class);
     
 });
 
