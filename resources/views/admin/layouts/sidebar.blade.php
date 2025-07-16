@@ -65,6 +65,11 @@
 								<span class="title">Shift</span>
 							</a>
 						</li>
+						<li class="{{ request()->routeIs('employees.*') ? 'active' : '' }}">
+							<a href="{{ route('employees.create') }}">
+								<span class="title">Employees</span>
+							</a>
+						</li>
 					</ul>
 				</li>
 				<li class="has-sub">
