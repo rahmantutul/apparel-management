@@ -21,8 +21,8 @@
 	<link rel="stylesheet" href="{{ asset('assets/js/select2/select2-bootstrap.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/js/jvectormap/jquery-jvectormap-1.2.2.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/js/rickshaw/rickshaw.min.css') }}">
-
-    @stack('Styles')
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    @stack('styles')
 
 </head>
 <body class="page-body">
