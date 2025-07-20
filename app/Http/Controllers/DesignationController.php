@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Designation;
 use Illuminate\Http\Request;
-
+use App\Traits\Loggable;
 class DesignationController extends Controller
 {
+     use Loggable;
         public function index()
     {
         $designations = Designation::all();

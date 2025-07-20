@@ -4,7 +4,8 @@
 				<!-- logo -->
 				<div class="logo">
 					<a href="index.html">
-						<img src="{{ asset('assets/images/logo@2x.png') }}" width="120" alt="" />
+						
+						<img src="{{ asset('storage/'.\App\Helpers\MenuHelper::GetGeneralSetting()->company_logo) }}" width="120" alt="" />
 					</a>
 				</div>
 				<!-- logo collapse icon -->
@@ -26,52 +27,69 @@
 						<span class="title">Dashboard</span>
 					</a>
 				</li>
-				<li class="{{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'active opened has-sub' : 'has-sub' }}">
-					<a href="index.html">
+				<li class="{{ \App\Helpers\MenuHelper::isOpen(['users.*', 'roles.*', 'logs.*']) }}">
+					<a href="#">
 						<i class="entypo-gauge"></i>
 						<span class="title">System Settings</span>
 					</a>
-					<ul class="{{ request()->routeIs('users.*') || request()->routeIs('roles.*') ? 'visible' : '' }}">
-						<li class="{{ request()->routeIs('users.*') ? 'active' : '' }}">
+					<ul class="{{ \App\Helpers\MenuHelper::showSubmenu(['users.*', 'roles.*']) }}">
+						<li class="{{ \App\Helpers\MenuHelper::isActive('users.*') }}">
 							<a href="{{ route('users.index') }}">
 								<span class="title">Users</span>
 							</a>
 						</li>
-						<li class="{{ request()->routeIs('roles.*') ? 'active' : '' }}">
+						<li class="{{ \App\Helpers\MenuHelper::isActive('roles.*') }}">
 							<a href="{{ route('roles.index') }}">
 								<span class="title">Roles</span>
 							</a>
 						</li>
+						<li class="{{ \App\Helpers\MenuHelper::isActive('holidays.*') }}">
+							<a href="{{ route('holidays.index') }}">
+								<span class="title">Holidays</span>
+							</a>
+						</li>
+						<li class="{{ \App\Helpers\MenuHelper::isActive('logs.*') }}">
+							<a href="{{ route('logs.index') }}">
+								<span class="title">Activity Log</span>
+							</a>
+						</li>
 					</ul>
 				</li>
-				<li class="active opened has-sub">
+
+				<li class="{{ \App\Helpers\MenuHelper::isOpen(['departments.*', 'designations.*', 'employee-shifts.*', 'employees.*']) }}">
 					<a href="#">
 						<i class="entypo-gauge"></i>
 						<span class="title">Employee Settings</span>
 					</a>
-					<ul class="visible">
-						<li class="{{ request()->routeIs('departments.*') ? 'active' : '' }}">
+					<ul class="{{ \App\Helpers\MenuHelper::showSubmenu(['departments.*', 'designations.*', 'employee-shifts.*', 'employees.*']) }}">
+						<li class="{{ \App\Helpers\MenuHelper::isActive('departments.*') }}">
 							<a href="{{ route('departments.index') }}">
 								<span class="title">Department</span>
 							</a>
 						</li>
-						<li class="{{ request()->routeIs('designations.*') ? 'active' : '' }}">
+						<li class="{{ \App\Helpers\MenuHelper::isActive('general_settings.*') }}">
+							<a href="{{ route('general_settings.edit') }}">
+								<span class="title">General settings</span>
+							</a>
+						</li>
+						<li class="{{ \App\Helpers\MenuHelper::isActive('designations.*') }}">
 							<a href="{{ route('designations.index') }}">
 								<span class="title">Designation</span>
 							</a>
 						</li>
-						<li class="{{ request()->routeIs('employee-shifts.*') ? 'active' : '' }}">
+						<li class="{{ \App\Helpers\MenuHelper::isActive('employee-shifts.*') }}">
 							<a href="{{ route('employee-shifts.index') }}">
 								<span class="title">Shift</span>
 							</a>
 						</li>
-						<li class="{{ request()->routeIs('employees.*') ? 'active' : '' }}">
-							<a href="{{ route('employees.create') }}">
+						<li class="{{ \App\Helpers\MenuHelper::isActive('employees.*') }}">
+							<a href="{{ route('employees.index') }}">
 								<span class="title">Employees</span>
 							</a>
 						</li>
 					</ul>
 				</li>
+
 				<li class="has-sub">
 					<a href="layout-api.html">
 						<i class="entypo-layout"></i>

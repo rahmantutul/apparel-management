@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
-
+use App\Traits\Loggable;
 class EmployeeController extends Controller
 {
+     use Loggable;
     /**
      * Show the form for creating a new employee.
      *

@@ -6,9 +6,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
-
+use App\Traits\Loggable;
+use Spatie\Activitylog\Models\Activity;
 class UserController extends Controller
 {
+     use Loggable;
     public function index()
     {
         $users = User::with('roles')->get();
@@ -107,5 +109,14 @@ class UserController extends Controller
         $user = Auth::user();
         $roleId = $user->roles->first()->id;
         return view('admin.edit_profile',compact('user','roleId'));
+    }
+
+    public function log_index()
+    {
+        $activities = Activity::with(['causer', 'subject'])
+            ->latest()
+            ->paginate(20);
+
+        return view('admin.log_index', compact('activities'));
     }
 }

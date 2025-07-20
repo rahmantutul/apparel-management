@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('emp_bank_account')->nullable();
             $table->boolean('emp_is_resigned')->default(false);
             $table->date('emp_resignation_date')->nullable();
-            $table->int('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable(); // fixed line
             $table->timestamps();
         });
 

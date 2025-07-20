@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Shift;
 use Illuminate\Http\Request;
-
+use App\Traits\Loggable;
 class ShiftController extends Controller
 {
+     use Loggable;
     public function index()
     {
         $employeeShifts = Shift::all();

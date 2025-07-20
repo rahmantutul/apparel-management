@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
         // User::truncate();
         // Recommended order:
         $this->call([
-            PermissionSeeder::class, // 1. Create permissions first
-            RoleSeeder::class,       // 2. Create roles (needs permissions)
-            UsersTableSeeder::class  // 3. Create users (needs roles)
+            PermissionSeeder::class,
+            RoleSeeder::class,
+            UsersTableSeeder::class,
+            GeneralSettingsTableSeeder::class,
         ]);
     }
 }

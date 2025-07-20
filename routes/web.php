@@ -3,6 +3,8 @@
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\GeneralSettingController;
+use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShiftController;
@@ -48,6 +50,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/employees/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::put('/employees/{employee}', [EmployeeController::class, 'update'])->name('employees.update');
     Route::delete('/employees/delete/{id}', [EmployeeController::class, 'destroy'])->name('employees.destroy');
+
+    // Log
+    Route::get('/logs/index', [UserController::class, 'log_index'])->name('logs.index');
+
+    Route::get('general', [GeneralSettingController::class, 'edit'])->name('general_settings.edit');
+    Route::put('general', [GeneralSettingController::class, 'update'])->name('general_settings.update');
+    Route::get('/holidays', [HolidayController::class, 'index'])->name(('holidays.index'));
+    Route::post('/holidays/toggle', [HolidayController::class, 'toggle'])->name('holidays.toggle');
     
 });
 

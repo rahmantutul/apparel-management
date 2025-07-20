@@ -5,25 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
-class Employee extends Model
+
+class GeneralSetting extends Model
 {
     use LogsActivity;
-    protected $guarded = ['id'];      
+    protected $guarded = ['id'];
+    protected $casts = [
+        'subscription_price' => 'decimal:2',
+    ];
 
-    public function user()
+    public static function settings()
     {
-        return $this->belongsTo(User::class);
-    }
-    public function designation()
-    {
-        return $this->belongsTo(Designation::class);
-    }
-    public function department()
-    {
-        return $this->belongsTo(Department::class);
+        return self::firstOrCreate(['id' => 1]);
     }
 
-    public function getActivitylogOptions(): LogOptions
+        public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
             ->logOnly(['name', 'email', 'status']) // User fields to track
