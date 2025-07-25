@@ -9,6 +9,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AttendancePolicyController;
+use App\Http\Controllers\AttendanceLogController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +60,8 @@ Route::middleware(['auth'])->group(function () {
     Route::put('general', [GeneralSettingController::class, 'update'])->name('general_settings.update');
     Route::get('/holidays', [HolidayController::class, 'index'])->name(('holidays.index'));
     Route::post('/holidays/toggle', [HolidayController::class, 'toggle'])->name('holidays.toggle');
+    Route::resource('attendance-policies', AttendancePolicyController::class);
+    Route::resource('attendance-logs', AttendanceLogController::class);
     
 });
 
