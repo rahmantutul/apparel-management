@@ -27,12 +27,17 @@
 						<span class="title">Dashboard</span>
 					</a>
 				</li>
-				<li class="{{ \App\Helpers\MenuHelper::isOpen(['users.*', 'roles.*', 'logs.*']) }}">
+				<li class="{{ \App\Helpers\MenuHelper::isOpen(['users.*', 'roles.*', 'logs.*','general_settings.edit','holidays.*','logs.*' ]) }}">
 					<a href="#">
-						<i class="entypo-gauge"></i>
+						<i class="fas fa-cog"></i>
 						<span class="title">System Settings</span>
 					</a>
-					<ul class="{{ \App\Helpers\MenuHelper::showSubmenu(['users.*', 'roles.*']) }}">
+					<ul class="{{ \App\Helpers\MenuHelper::showSubmenu(['users.*', 'roles.*', 'logs.*','general_settings.edit','holidays.*','logs.*']) }}">
+						<li class="{{ \App\Helpers\MenuHelper::isActive('general_settings.*') }}">
+							<a href="{{ route('general_settings.edit') }}">
+								<span class="title">General settings</span>
+							</a>
+						</li>
 						<li class="{{ \App\Helpers\MenuHelper::isActive('users.*') }}">
 							<a href="{{ route('users.index') }}">
 								<span class="title">Users</span>
@@ -56,20 +61,15 @@
 					</ul>
 				</li>
 
-				<li class="{{ \App\Helpers\MenuHelper::isOpen(['departments.*', 'designations.*', 'employee-shifts.*', 'employees.*']) }}">
+				<li class="{{ \App\Helpers\MenuHelper::isOpen(['departments.*', 'designations.*', 'employee-shifts.*', 'employees.*', 'attendance-logs.*']) }}">
 					<a href="#">
-						<i class="entypo-gauge"></i>
+						<i class="fas fa-users"></i>
 						<span class="title">Employee Settings</span>
 					</a>
-					<ul class="{{ \App\Helpers\MenuHelper::showSubmenu(['departments.*', 'designations.*', 'employee-shifts.*', 'employees.*']) }}">
+					<ul class="{{ \App\Helpers\MenuHelper::showSubmenu(['departments.*', 'designations.*', 'employee-shifts.*', 'employees.*', 'attendance-logs.*']) }}">
 						<li class="{{ \App\Helpers\MenuHelper::isActive('departments.*') }}">
 							<a href="{{ route('departments.index') }}">
 								<span class="title">Department</span>
-							</a>
-						</li>
-						<li class="{{ \App\Helpers\MenuHelper::isActive('general_settings.*') }}">
-							<a href="{{ route('general_settings.edit') }}">
-								<span class="title">General settings</span>
 							</a>
 						</li>
 						<li class="{{ \App\Helpers\MenuHelper::isActive('designations.*') }}">
@@ -87,10 +87,20 @@
 								<span class="title">Employees</span>
 							</a>
 						</li>
+						<li class="{{ \App\Helpers\MenuHelper::isActive('attendance-logs.*') }}">
+							<a href="{{ route('attendance-logs.index') }}">
+								<span class="title">Attendance Log</span>
+							</a>
+						</li>
+						<li class="{{ \App\Helpers\MenuHelper::isActive('attendance-logs.*') }}">
+							<a href="{{ route('attendance-logs.index') }}">
+								<span class="title">Attendance Log</span>
+							</a>
+						</li>
 					</ul>
 				</li>
 
-				<li class="has-sub">
+				{{--  <li class="has-sub">
 					<a href="layout-api.html">
 						<i class="entypo-layout"></i>
 						<span class="title">Layouts</span>
@@ -622,7 +632,7 @@
 							</ul>
 						</li>
 					</ul>
-				</li>
+				</li>  --}}
 			</ul>
 			
 		</div>
