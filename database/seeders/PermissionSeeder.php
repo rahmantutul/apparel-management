@@ -39,7 +39,13 @@ class PermissionSeeder extends Seeder
             
             // Settings permissions
             'view_settings',
-            'edit_settings'
+            'edit_settings',
+
+            // Attendance Log permissions
+            'view_attendance_logs',
+            'create_attendance_logs',
+            'edit_attendance_logs',
+            'delete_attendance_logs'
         ];
 
         foreach ($permissions as $permission) {
