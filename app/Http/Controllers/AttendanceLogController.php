@@ -12,10 +12,7 @@ class AttendanceLogController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:view_attendance_logs', ['only' => ['index', 'show']]);
-        $this->middleware('permission:create_attendance_logs', ['only' => ['create', 'store']]);
-        $this->middleware('permission:edit_attendance_logs', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete_attendance_logs', ['only' => ['destroy']]);
+       
     }
 
     public function index()
@@ -28,7 +25,7 @@ class AttendanceLogController extends Controller
     {
         $request->validate([
             'sn' => 'required|string|max:255',
-            'user_id' => 'required|exists:users,id',
+            'emp_id' => 'required|exists:employees,id',
             'attendance_date' => 'required|date',
             'attendance_time' => 'required|date_format:H:i:s',
             'extra' => 'nullable|string|max:255',
@@ -37,7 +34,16 @@ class AttendanceLogController extends Controller
             'status_2' => 'nullable|string|max:255',
         ]);
         
-        AttendanceLog::create($request->all());
+        $attendanceLog = new AttendanceLog();
+        $attendanceLog->sn = $request->sn;
+        $attendanceLog->emp_id = $request->emp_id;
+        $attendanceLog->attendance_date = $request->attendance_date;
+        $attendanceLog->attendance_time = $request->attendance_time;
+        $attendanceLog->extra = $request->extra;
+        $attendanceLog->punch_type = $request->punch_type;
+        $attendanceLog->status_1 = $request->status_1;
+        $attendanceLog->status_2 = $request->status_2;
+        $attendanceLog->save();
         
         return response()->json(['message' => 'Attendance Log created successfully']);
     }
@@ -51,7 +57,7 @@ class AttendanceLogController extends Controller
     {
         $request->validate([
             'sn' => 'required|string|max:255',
-            'user_id' => 'required|exists:users,id',
+            'emp_id' => 'required|exists:employees,id',
             'attendance_date' => 'required|date',
             'attendance_time' => 'required|date_format:H:i:s',
             'extra' => 'nullable|string|max:255',
@@ -60,7 +66,15 @@ class AttendanceLogController extends Controller
             'status_2' => 'nullable|string|max:255',
         ]);
         
-        $attendanceLog->update($request->all());
+        $attendanceLog->sn = $request->sn;
+        $attendanceLog->emp_id = $request->emp_id;
+        $attendanceLog->attendance_date = $request->attendance_date;
+        $attendanceLog->attendance_time = $request->attendance_time;
+        $attendanceLog->extra = $request->extra;
+        $attendanceLog->punch_type = $request->punch_type;
+        $attendanceLog->status_1 = $request->status_1;
+        $attendanceLog->status_2 = $request->status_2;
+        $attendanceLog->save();
         
         return response()->json(['message' => 'Attendance Log updated successfully']);
     }

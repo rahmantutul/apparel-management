@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             RoleSeeder::class,
             UsersTableSeeder::class,
+            CompaniesTableSeeder::class,
             GeneralSettingsTableSeeder::class,
+            AttendancePoliciesTableSeeder::class,
         ]);
     }
 }

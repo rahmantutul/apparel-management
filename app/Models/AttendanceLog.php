@@ -15,7 +15,7 @@ class AttendanceLog extends Model
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-            ->logOnly(['sn', 'user_id', 'attendance_date', 'attendance_time', 'extra', 'punch_type', 'status_1', 'status_2'])
+            ->logOnly(['sn', 'emp_id', 'attendance_date', 'attendance_time', 'extra', 'punch_type', 'status_1', 'status_2'])
             ->logOnlyDirty()
             ->setDescriptionForEvent(fn(string $eventName) => "AttendanceLog {$eventName} Details");
     }

@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th>SN</th>
-                <th>User ID</th>
+                <th>Employee ID</th>
                 <th>Attendance Date</th>
                 <th>Attendance Time</th>
                 <th>Extra</th>
@@ -29,7 +29,7 @@
             @foreach($attendanceLogs as $log)
                 <tr>
                     <td>{{ $log->sn }}</td>
-                    <td>{{ $log->user_id }}</td>
+                    <td>{{ $log->emp_id }}</td>
                     <td>{{ $log->attendance_date }}</td>
                     <td>{{ $log->attendance_time }}</td>
                     <td>{{ $log->extra }}</td>
@@ -50,7 +50,7 @@
         <tfoot>
             <tr>
                 <th>SN</th>
-                <th>User ID</th>
+                <th>Employee ID</th>
                 <th>Attendance Date</th>
                 <th>Attendance Time</th>
                 <th>Extra</th>
